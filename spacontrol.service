@@ -5,11 +5,11 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=pi
-Group=pi
-WorkingDirectory=/home/pi/spacontrol
-Environment=PATH=/home/pi/spacontrol/venv/bin
-ExecStart=/home/pi/spacontrol/venv/bin/python main.py
+User=spacontrol
+Group=spacontrol
+WorkingDirectory=/opt/spacontrol
+Environment=PATH=/opt/spacontrol/venv/bin
+ExecStart=/opt/spacontrol/venv/bin/python main.py
 Restart=always
 RestartSec=10
 StandardOutput=journal
@@ -21,7 +21,7 @@ NoNewPrivileges=yes
 PrivateTmp=yes
 ProtectSystem=strict
 ProtectHome=yes
-ReadWritePaths=/home/pi/spacontrol
+ReadWritePaths=/opt/spacontrol
 
 [Install]
 WantedBy=multi-user.target

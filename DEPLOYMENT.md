@@ -10,16 +10,26 @@ sudo apt install python3 python3-pip python3-venv
 
 ## Installation
 
-1. Clone or copy the project to `/home/pi/spacontrol`
-2. Create a virtual environment:
+1. Create a dedicated user and directory:
 ```bash
-cd /home/pi/spacontrol
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+sudo useradd --system --shell /bin/false spacontrol
+sudo mkdir -p /opt/spacontrol
+sudo chown spacontrol:spacontrol /opt/spacontrol
 ```
 
-3. Update spa IP addresses in `config.py` if needed
+2. Copy the project files to `/opt/spacontrol`:
+```bash
+sudo cp -r . /opt/spacontrol/
+sudo chown -R spacontrol:spacontrol /opt/spacontrol
+```
+
+3. Create a virtual environment as the spacontrol user:
+```bash
+sudo -u spacontrol bash -c "cd /opt/spacontrol && python3 -m venv venv"
+sudo -u spacontrol bash -c "cd /opt/spacontrol && venv/bin/pip install -r requirements.txt"
+```
+
+4. Update spa IP addresses in `config.py` if needed
 
 ## SystemD Service Setup
 
